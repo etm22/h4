@@ -1,5 +1,9 @@
 name: Create video
 
+on:
+  push:
+    branches: [master]
+
 jobs:
   upload-videos-yt:
     runs-on: ubuntu-latest
