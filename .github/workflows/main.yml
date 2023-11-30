@@ -8,6 +8,8 @@ jobs:
   create-video:
     runs-on: macos-latest
     strategy:
+      max-parallel: 1
+      fail-fast: false
       matrix:
         sign: ["libra", "aries"]
     steps:
