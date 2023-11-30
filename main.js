@@ -5,7 +5,7 @@ const { unlinkSync, writeFileSync } = require("fs");
 const axios = require("axios");
 
 (async () => {
-  const sign = "taurus";
+  const sign = process.argv[2];
   const horoscope = await scrapeHoroscope(sign);
 
   await createTalkingAnimation({
@@ -28,6 +28,6 @@ const axios = require("axios");
     `ffmpeg -i "outputs/bg.mp4" -i "outputs/${horoscope.sign}.mov" -filter_complex "[1:v]scale=iw/2:ih/2[ovrl]; [0:v][ovrl]overlay=x=(main_w-overlay_w)/2:y=main_h-overlay_h[bg]; [bg]drawtext=text='${horoscope.sign} - ${horoscope.date}':fontsize=100:fontcolor=white:x=10:y=10" -shortest -codec:a copy "outputs/${horoscope.sign}.mp4"`
   );
 
-  //   unlinkSync(`outputs/${horoscope.sign}.mov`);
-  //   unlinkSync(`outputs/bg.mp4`);
+  unlinkSync(`outputs/${horoscope.sign}.mov`);
+  unlinkSync(`outputs/bg.mp4`);
 })();

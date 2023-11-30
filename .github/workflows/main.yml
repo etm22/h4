@@ -5,13 +5,16 @@ on:
     branches: [master]
 
 jobs:
-  upload-videos-yt:
-    runs-on: ubuntu-latest
+  create-video:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        sign: ["libra", "aries"]
     steps:
       - uses: actions/checkout@v3
       - uses: FedericoCarboni/setup-ffmpeg@v2
       - run: npm i
-      - run: node main.js
+      - run: node main.js ${{ matrix.sign }}
       - uses: actions/upload-artifact@v3
         with:
           name: outputs
