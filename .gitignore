@@ -1,0 +1,6 @@
+node_modules
+*.wav
+meta.json
+*.zip
+*.mp4
+*.mov
