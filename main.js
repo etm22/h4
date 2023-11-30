@@ -31,7 +31,7 @@ const axios = require("axios");
       horoscope.sign
     )}':fontsize=75:fontcolor=white:x=150:y=65, drawtext=text='${
       horoscope.date
-    }':fontsize=70:fontcolor=white:x=(w-tw-25):y=65" -shortest -codec:a copy "outputs/${
+    }':fontsize=50:fontcolor=white:x=(w-tw-75):y=75" -shortest -codec:a copy "outputs/${
       horoscope.sign
     }.mp4"`
   );

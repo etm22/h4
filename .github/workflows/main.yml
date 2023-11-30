@@ -14,7 +14,9 @@ jobs:
         sign: ["aries"]
     steps:
       - uses: actions/checkout@v3
-      - uses: FedericoCarboni/setup-ffmpeg@v2
+      - uses: Iamshankhadeep/setup-ffmpeg@v1.2
+        with:
+          version: "5.0"
       - run: npm i
       - run: node main.js ${{ matrix.sign }}
       - uses: actions/upload-artifact@v3
