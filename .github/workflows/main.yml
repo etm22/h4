@@ -6,12 +6,12 @@ on:
 
 jobs:
   create-video:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
       fail-fast: false
       matrix:
-        sign: ["libra", "aries"]
+        sign: ["aries"]
     steps:
       - uses: actions/checkout@v3
       - uses: FedericoCarboni/setup-ffmpeg@v2
