@@ -29,7 +29,7 @@ const axios = require("axios");
       horoscope.sign
     }.mov" -filter_complex "[1:v]scale=iw/2:ih/2[ovrl]; [0:v][ovrl]overlay=x=(main_w-overlay_w)/2:y=main_h-overlay_h[bg]; [bg]drawtext=text='${capitalizeFirstLetter(
       horoscope.sign
-    )}':fontsize=75:fontcolor=white:x=150:y=65, drawtext=text='${
+    )}':fontsize=60:fontcolor=white:x=150:y=50, drawtext=text='${
       horoscope.date
     }':fontsize=50:fontcolor=white:x=(w-tw-75):y=75" -shortest -codec:a copy "outputs/${
       horoscope.sign
