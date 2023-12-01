@@ -11,7 +11,7 @@ jobs:
       max-parallel: 1
       fail-fast: false
       matrix:
-        sign: ["aries"]
+        sign: ["aries", "taurus"]
     steps:
       - uses: actions/checkout@v3
       - uses: Iamshankhadeep/setup-ffmpeg@v1.2
@@ -23,3 +23,17 @@ jobs:
         with:
           name: outputs
           path: ./outputs
+  mrege-videos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+      - uses: Iamshankhadeep/setup-ffmpeg@v1.2
+        with:
+          version: "5.0"
+      - run: npm i
+      - run: node merge.js
+      - uses: actions/upload-artifact@v3
+        with:
+          name: final
+          path: ./outputs/final.mp4

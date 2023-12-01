@@ -4,6 +4,21 @@ const { execSync } = require("child_process");
 const { unlinkSync, writeFileSync } = require("fs");
 const axios = require("axios");
 
+const zodiacSigns = [
+  "aries",
+  "taurus",
+  "gemini",
+  "cancer",
+  "leo",
+  "virgo",
+  "libra",
+  "scorpio",
+  "sagittarius",
+  "capricorn",
+  "aquarius",
+  "pisces",
+];
+
 (async () => {
   const sign = process.argv[2];
   const horoscope = await scrapeHoroscope(sign);
@@ -18,12 +33,14 @@ const axios = require("axios");
 
   //   download bg video
   const res = await axios.get(
-    `https://huggingface.co/upmr/temp/resolve/main/vid_2.mp4`,
+    `https://huggingface.co/upmr/temp/resolve/main/vid_${getBackgroundVideoId(
+      sign
+    )}.mp4`,
     { responseType: "arraybuffer" }
   );
   writeFileSync("outputs/bg.mp4", res.data);
 
-  //   create final video
+  // create final video
   execSync(
     `ffmpeg -y -i "outputs/bg.mp4" -i "outputs/${
       horoscope.sign
@@ -42,4 +59,12 @@ const axios = require("axios");
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function getBackgroundVideoId(sign) {
+  const zodiacSignObjects = zodiacSigns.map((sign, index) => {
+    return { sign: sign, id: index % 3 };
+  });
+
+  return zodiacSignObjects.find((z) => z.sign == sign).id;
 }
