@@ -24,6 +24,7 @@ jobs:
           name: outputs
           path: ./outputs
   mrege-videos:
+    needs: create-video
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
