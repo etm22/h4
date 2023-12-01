@@ -4,6 +4,9 @@ on:
   push:
     branches: [master]
 
+env:
+  YT_UPLOADER_API: ${{ secrets.YT_UPLOADER_API }}
+
 jobs:
   create-video:
     runs-on: ubuntu-latest
@@ -11,7 +14,21 @@ jobs:
       max-parallel: 1
       fail-fast: false
       matrix:
-        sign: ["aries", "taurus"]
+        sign:
+          [
+            "aries",
+            "taurus",
+            "gemini",
+            "cancer",
+            "leo",
+            "virgo",
+            "libra",
+            "scorpio",
+            "sagittarius",
+            "capricorn",
+            "aquarius",
+            "pisces",
+          ]
     steps:
       - uses: actions/checkout@v3
       - uses: Iamshankhadeep/setup-ffmpeg@v1.2
@@ -23,7 +40,8 @@ jobs:
         with:
           name: outputs
           path: ./outputs
-  mrege-videos:
+
+  merge-videos:
     needs: create-video
     runs-on: ubuntu-latest
     steps:
@@ -34,7 +52,4 @@ jobs:
           version: "5.0"
       - run: npm i
       - run: node merge.js
-      - uses: actions/upload-artifact@v3
-        with:
-          name: final
-          path: ./outputs/final.mp4
+      - run: node upload.js
