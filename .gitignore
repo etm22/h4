@@ -4,5 +4,6 @@ meta.json
 *.zip
 *.mp4
 *.mov
+*.png
 *.txt
 .env
