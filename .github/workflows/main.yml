@@ -16,7 +16,21 @@ jobs:
       max-parallel: 1
       fail-fast: false
       matrix:
-        sign: ["aries"]
+        sign:
+          [
+            "aries",
+            "taurus",
+            "gemini",
+            "cancer",
+            "leo",
+            "virgo",
+            "libra",
+            "scorpio",
+            "sagittarius",
+            "capricorn",
+            "aquarius",
+            "pisces",
+          ]
     steps:
       - uses: actions/checkout@v3
       - uses: Iamshankhadeep/setup-ffmpeg@v1.2
